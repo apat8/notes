@@ -10,6 +10,9 @@ import store from './store';
 import HomeSceen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import MainScreen from './screens/MainScreen';
+import PrivateRoute from './components/PrivateRoute';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>}>
@@ -17,6 +20,10 @@ const router = createBrowserRouter(
       <Route path='/login' element={<LoginScreen/>}></Route>
       <Route path='/register' element={<RegisterScreen/>}></Route>
       
+      {/* Protected routes */}
+      <Route path='' element={<PrivateRoute/>}>
+        <Route path='/main' element={<MainScreen/>}></Route>
+      </Route>
     </Route>
   )
 )
@@ -24,9 +31,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-  <React.StrictMode>
+    <React.StrictMode>
       <RouterProvider router={router}/>
-  </React.StrictMode>
+    </React.StrictMode>
   </Provider>
 );
 
