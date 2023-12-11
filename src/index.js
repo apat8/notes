@@ -12,6 +12,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import MainScreen from './screens/MainScreen';
 import PrivateRoute from './components/PrivateRoute';
+import MainLayout from './components/MainLayout';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +23,9 @@ const router = createBrowserRouter(
       
       {/* Protected routes */}
       <Route path='' element={<PrivateRoute/>}>
+        <Route path='' element={<MainLayout/>}>
         <Route path='/main' element={<MainScreen/>}></Route>
+        </Route>
       </Route>
     </Route>
   )
