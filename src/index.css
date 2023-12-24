@@ -204,6 +204,34 @@ code {
   background-color: #E5E4F5;
 }
 
+/*Sidebar */
+.sidebar{
+  z-index: -1;
+  flex-wrap: nowrap;
+  overflow-y: auto;
+}
+
+.sidebar .nav-item .nav-link {
+  color: #3A375C;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar .nav-item .nav-link:not(.active):hover {
+  color: #201C4F;
+  background-color: #E5E4F5;
+  font-weight: bold;
+}
+
+.sidebar .nav-item .active {
+  color: #201C4F;
+  font-weight: bold;
+  background-color: orange;
+}
+
+.scrollbar-gutter-stable {
+  scrollbar-gutter: stable;
+}
+
 @keyframes wave {
 	0%, 60%, 100% {
 		transform: initial;
