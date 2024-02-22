@@ -75,6 +75,39 @@ const CollectionCard = ({collectionID, title, updatedAt}) => {
             </Card>
         </div>
 
+        <ModalContainer showModal={showEditCollectionModal} handleClose={handleModalOnClose}>
+            <Modal.Header className='border border-0 text-center flex-column'>
+                <Modal.Title className='fw-bold fs-2'>Edit Collection</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='pt-0'>
+                <Form>
+                    <Form.Group className="mb-3">
+                        <FormInput 
+                            type='input' 
+                            placeholder='title'
+                            value={updatedTitle} 
+                            onChange={handleTitleOnChange}/>
+                    </Form.Group>
+                </Form>
+                {isError && 
+                    <Row>
+                        <Col className='text-center bg-error py-4 px-3 rounded-4'>
+                            <Form.Text className='text-danger label' style={{}}>The title must be different from the existing title</Form.Text>
+                        </Col>
+                    </Row> 
+                }
+                
+            </Modal.Body>
+            <Modal.Footer className='border border-0 text-center justify-content-center'>
+                <PillButton onClick={handleModalOnClose}>
+                    Close
+                </PillButton>
+                <PillButton onClick={handleUpdateCollection}>
+                    Update
+                </PillButton>
+            </Modal.Footer>
+        </ModalContainer>
+
         <MoveToTrashModal 
             collectionID={collectionID} 
             showModal={showMoveToTrashModal}
