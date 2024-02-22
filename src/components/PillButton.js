@@ -1,11 +1,11 @@
 import { Button } from 'react-bootstrap';
 
-const PillButton = ({type, children}) => {
+const PillButton = ({children, className, ...props}) => {
     return(
         <Button 
-            type={type ? type : 'button'}
+            {...props}
             variant='orange' 
-            className='rounded-pill px-4 py-2'
+            className={`rounded-pill px-4 py-2 ${className}`}
             >
                 {children}
         </Button>

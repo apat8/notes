@@ -43,6 +43,10 @@ const NoteCard = ({noteID, title, content, updatedAt = Date.now()}) => {
             </Card>
         </div>
 
+         <MoveToTrashModal 
+                noteID={noteID} 
+                showModal={showMoveToTrashModal} 
+                setShowModal={setShowMoveToTrashModal}/>
         </>
     )
 }

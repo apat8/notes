@@ -75,6 +75,11 @@ const CollectionCard = ({collectionID, title, updatedAt}) => {
             </Card>
         </div>
 
+        <MoveToTrashModal 
+            collectionID={collectionID} 
+            showModal={showMoveToTrashModal}
+            setShowModal={setShowMoveToTrashModal}
+        />
         </>
     )
 }
