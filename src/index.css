@@ -263,6 +263,44 @@ code {
   background-color: #E5E4F5 !important;
 }
 
+/* Collection card */
+.add-collection {
+  border-width: 0.25rem;
+  border-radius: 1rem;
+  border-style: dashed;
+  color: grey;
+}
+
+.svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.collection-card {
+  border-top-left-radius: 0rem;
+  height: 9rem;
+  -webkit-filter: drop-shadow( .5rem 1rem rgba(0,0,0,.15));
+  filter: drop-shadow(0rem 0.5rem 0.5rem rgba(0,0,0,.17));
+}
+
+.collection-card::before {
+  content:  '';
+  position: absolute;
+  top: -0.97rem;
+  width: 60%;
+  height: 30%;
+  background: white;
+  border-radius: 1rem 0 0 0;
+  /* clip-path: path('M 0 0 L 160 0 C 185 5, 175 16, 200 18 L 0 50 z'); */
+  -webkit-clip-path: url(#folder-clip-path);
+  clip-path: url(#folder-clip-path);
+}
+
+.collection-card:hover::before,
+.collection-card:hover{
+  background-color: #fbfafa;
+}
+
 
 @keyframes wave {
 	0%, 60%, 100% {
