@@ -15,7 +15,7 @@ const MainLayout = () => {
                 <Col xs={2} className='p-0 h-100 overflow-y-auto'>
                     <Sidebar />
                 </Col>
-                <Col xs={10} className='h-100 overflow-y-auto main-content-container'>
+                <Col xs={10} className='h-100 overflow-y-auto main-content-container p-0'>
                     <Outlet />
                 </Col>
             </Row>

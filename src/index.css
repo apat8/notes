@@ -155,7 +155,8 @@ code {
 
 /* Main layout */
 .main-content-container {
-  background-color:#FFEFD1; 
+  /* background-color:#FFEFD1;  */
+  background-color:#eee; 
   border-radius: 1rem 0rem;
 }
 
@@ -234,6 +235,20 @@ code {
 
 .scrollbar-gutter-stable {
   scrollbar-gutter: stable;
+}
+
+/* Main screen */
+.collection-card-wrapper:nth-child(1){
+  z-index: 4;
+}
+.collection-card-wrapper:nth-child(2){
+  z-index: 3;
+}
+.collection-card-wrapper:nth-child(3){
+  z-index: 2;
+}
+.collection-card-wrapper:nth-child(4){
+  z-index: 1;
 }
 
 /* Note card */

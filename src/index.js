@@ -24,7 +24,7 @@ const router = createBrowserRouter(
       {/* Protected routes */}
       <Route path='' element={<PrivateRoute/>}>
         <Route path='' element={<MainLayout/>}>
-        <Route path='/main' element={<MainScreen/>}></Route>
+          <Route path='/main' element={<MainScreen/>}></Route>
         </Route>
       </Route>
     </Route>
