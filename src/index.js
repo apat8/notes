@@ -11,6 +11,7 @@ import HomeSceen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import MainScreen from './screens/MainScreen';
+import EditNoteScreen from './screens/EditNoteScreen';
 import PrivateRoute from './components/PrivateRoute';
 import MainLayout from './components/MainLayout';
 
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path='' element={<PrivateRoute/>}>
         <Route path='' element={<MainLayout/>}>
           <Route path='/main' element={<MainScreen/>}></Route>
+          <Route path='/notes/:noteID' element={<EditNoteScreen/>}></Route>
         </Route>
       </Route>
     </Route>

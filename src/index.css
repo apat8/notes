@@ -317,6 +317,62 @@ code {
 }
 
 
+/* Editor */
+.editor {
+  outline: none;
+  height: 0px;
+  border-color: #eee !important;
+}
+
+.note-title:empty::before{
+  content: attr(placeholder);
+  color: #2125296b
+}
+
+.toolbar-item {
+  background: none;
+  border-radius: 0.75rem;
+  color: black;
+  border: none;
+}
+
+.toolbar-item .icon{
+  opacity: 0.6;
+}
+
+.toolbar-item:hover {
+  background-color: #eee;
+  color: black;
+}
+
+.toolbar-item:active, .toolbar-item.active  {
+  background-color: #eee !important;
+  color: black !important;
+}
+
+.toolbar-item:disabled {
+  background:none;
+  color: black
+}
+
+.toolbar-item.space {
+ margin-right: 0.1rem;
+}
+
+.toolbar-item:active .icon{
+  opacity: 1 !important;
+}
+
+.toolbar-item:disabled .icon{
+  opacity: 0.2 !important;
+}
+
+.toolbar .divider{
+  width: 1px;
+  background-color: #eee;
+  margin: 0 0.5rem;
+}
+
 @keyframes wave {
 	0%, 60%, 100% {
 		transform: initial;
