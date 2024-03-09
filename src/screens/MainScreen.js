@@ -1,15 +1,31 @@
+import { useState } from 'react';
 import { Col, Container, Row, Placeholder } from 'react-bootstrap';
-import CollectionCard from '../components/CollectionCard';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNoteSticky, faFolder } from '@fortawesome/free-solid-svg-icons';
+import CollectionCard from '../components/CollectionCard';
 import NoteCard from '../components/NoteCard';
-import { useGetAllNotesQuery } from '../slices/notesApiSlice';
+import CollectionModal from '../components/CollectionModal';
+import AddFABDropdown from '../components/AddFABDropdown';
+import { useAddNoteMutation, useGetAllNotesQuery } from '../slices/notesApiSlice';
 import { useGetAllCollectionsQuery } from '../slices/collectionApiSlice';
 
-const MainScreen = () => {    
+const MainScreen = () => {
+    const navigate = useNavigate();    
     const {data: notes, error, isLoading} = useGetAllNotesQuery();
-
     const {data: collections, isLoading: isLoadingCollections} = useGetAllCollectionsQuery();
+    const [addNote, {isLoading: isLoadingAddNote}] = useAddNoteMutation();
+
+    const [showCollectionModal, setShowCollectionModal] = useState(false);
+    
+    const handleCollectionModalOnClose = () => {
+        setShowCollectionModal(false);
+    }
+
+    const handleOnNewNoteClick = async () => {
+        const res = await addNote();
+        navigate(`/notes/${res.data.note._id}`);
+    }
 
     return(
         <div className='scrollbar-gutter-stable p-3 h-100'>
@@ -71,6 +87,16 @@ const MainScreen = () => {
                     </Col>                        
                 </Row>
             </Container>
+
+            <AddFABDropdown 
+                onNewNoteClick={handleOnNewNoteClick}
+                onNewCollectionClick={() => setShowCollectionModal(true)}
+            />
+
+            <CollectionModal
+                showCollectionModal={showCollectionModal}
+                onClose={handleCollectionModalOnClose}
+            />
         </div>
     )
 }

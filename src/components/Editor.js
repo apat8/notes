@@ -21,7 +21,7 @@ const Editor = ({editorRef}) => {
 
     const initialConfig = {
         namespace: 'MyEditor',
-        editorState: note.content,
+        ...(note.content && {editorState: note.content}),
         editable: !note.isTrash,
         theme,
         onError,
