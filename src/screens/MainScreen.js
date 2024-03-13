@@ -12,8 +12,21 @@ import { useGetAllCollectionsQuery } from '../slices/collectionApiSlice';
 
 const MainScreen = () => {
     const navigate = useNavigate();    
-    const {data: notes, error, isLoading} = useGetAllNotesQuery();
-    const {data: collections, isLoading: isLoadingCollections} = useGetAllCollectionsQuery();
+    const {data: notes, error, isLoading} = useGetAllNotesQuery(undefined, {
+        selectFromResult: ({data, error, isLoading}) => ({
+            data: data?.filter((note) => !note.isTrash).slice(0,8),
+            error,
+            isLoading
+        })
+    });
+    const {data: collections, isLoading: isLoadingCollections} = useGetAllCollectionsQuery(undefined, {
+        selectFromResult: ({data, error, isLoading}) => ({
+            data: data?.filter((collection) => !collection.isTrash).slice(0,4),
+            error,
+            isLoading
+        })
+    });
+
     const [addNote, {isLoading: isLoadingAddNote}] = useAddNoteMutation();
 
     const [showCollectionModal, setShowCollectionModal] = useState(false);
@@ -29,8 +42,8 @@ const MainScreen = () => {
 
     return(
         <div className='scrollbar-gutter-stable p-3 h-100'>
-            <Container className='h-100 mt-2'>
-                <Row className=''>
+            <Container className='h-100'>
+                <Row>
                     <Col className='h-100 d-flex flex-column pb-5'>
                         <Row className='mb-4 pb-2'>
                             <span className='icon-link color-navy'>
@@ -42,7 +55,7 @@ const MainScreen = () => {
                             {isLoadingCollections ? (
                                 <Placeholder xs={12} className='h-100'></Placeholder>
                             ) : collections && (
-                                collections.slice(0, 4).map((collection, i) => {
+                                collections.map((collection, i) => {
                                     return (
                                         <Col  xs={6} lg={4} xl={3} key={i} className='collection-card-wrapper'>
                                             <CollectionCard 
@@ -70,7 +83,7 @@ const MainScreen = () => {
                             {isLoading ? (
                                 <Placeholder xs={12} className='h-100'></Placeholder>
                             ) : notes && (
-                                notes.slice(0, 7).map((note, i) => {
+                                notes.map((note, i) => {
                                     return (
                                         <Col xs={6} lg={4} xl={3} key={i}>
                                             <NoteCard 
