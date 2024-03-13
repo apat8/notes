@@ -45,13 +45,18 @@ const MainScreen = () => {
             <Container className='h-100'>
                 <Row>
                     <Col className='h-100 d-flex flex-column pb-5'>
-                        <Row className='mb-4 pb-2'>
-                            <span className='icon-link color-navy'>
-                                <FontAwesomeIcon icon={faFolder}/>
-                                <h5 className='m-0'>Collections</h5>
-                            </span>
+                        <Row className='mb-4 pb-2 justify-content-between'>
+                            <Col xs='auto'>
+                                <span className='icon-link color-navy'>
+                                    <FontAwesomeIcon icon={faFolder}/>
+                                    <h5 className='m-0'>Collections</h5>
+                                </span>
+                            </Col>
+                             <Col xs='auto'>
+                                <NavLink to='/collections' className='color-navy'>view all</NavLink>
+                            </Col>
                         </Row>
-                        <Row className='flex-grow-1 gy-5 collections-row'>
+                        <Row className='flex-grow-1 gy-5'>
                             {isLoadingCollections ? (
                                 <Placeholder xs={12} className='h-100'></Placeholder>
                             ) : collections && (
@@ -69,14 +74,17 @@ const MainScreen = () => {
                         </Row>
                     </Col>
                 </Row>
-                <Row className=''>
+                <Row>
                     <Col className='h-100 d-flex flex-column pb-1'>
-                        <Row className='mb-3'>
-                            <Col>
+                        <Row className='mb-3 justify-content-between'>
+                            <Col xs='auto'>
                                 <span className='icon-link color-navy'>
                                     <FontAwesomeIcon icon={faNoteSticky}/>
                                     <h5 className='m-0'>Notes</h5>
                                 </span>
+                            </Col>
+                            <Col xs='auto'>
+                                <NavLink to='/notes' className='color-navy'>view all</NavLink>
                             </Col>
                         </Row>
                         <Row className='flex-grow-1 gy-3'>
