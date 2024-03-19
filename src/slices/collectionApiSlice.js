@@ -30,7 +30,14 @@ export const collectionApiSlice = apiSlice.injectEndpoints({
                 'Collection',
                 ...result.map(({_id}) => ({type:'Collection', _id}))
             ]
-        })        
+        }),
+        getCollectionNotes: builder.query({
+            query: (collectionID) => `${COLLECTION_URL}/${collectionID}/notes`,
+            providesTags: (result = [], error, arg) => [
+                'Note',
+                ...result.map(({_id}) => ({type:'Note', _id}))
+            ]
+        })          
     })
 })
 
@@ -38,5 +45,6 @@ export const {
     useAddCollectionMutation,
     useUpdateCollectionMutation,
     useGetCollectionQuery,
-    useGetAllCollectionsQuery
+    useGetAllCollectionsQuery,
+    useGetCollectionNotesQuery
 } = collectionApiSlice;
