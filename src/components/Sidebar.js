@@ -1,13 +1,16 @@
-import { Nav, NavItem, Collapse } from 'react-bootstrap';
 import { useState } from 'react';
+import { Nav, NavItem, Collapse, Placeholder } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp, faFolder, faHouse, faStickyNote, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp, faCircle, faFolder, faHouse, faStickyNote, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useGetAllCollectionsQuery } from '../slices/collectionApiSlice';
 
 
 const Sidebar = () => {
     
-    const [isOpen, setIsOpen] = useState(false); 
+    const [isOpen, setIsOpen] = useState(true);
+    
+    const {data: collections, isLoading: isLoadingCollections} = useGetAllCollectionsQuery();
 
     const collapseArrowStyle = {
         transform: isOpen ? 'rotate(180deg)' : '', 
@@ -15,7 +18,7 @@ const Sidebar = () => {
     }
 
     return(
-        <Nav variant='pills' className='flex-column h-100 sidebar p-2 w-100 scrollbar-gutter-stable'>
+        <Nav variant='pills' className='flex-column h-100 sidebar px-2 pt-2 w-100 scrollbar-gutter-stable'>
             <NavItem className='mt-2'>
                 <Nav.Link as={NavLink} to='/main' end>
                     <FontAwesomeIcon icon={faHouse}/>
@@ -37,18 +40,29 @@ const Sidebar = () => {
             <hr className='w-100 align-self-center'/>
 
             <NavItem>
-                <Nav.Link
-                onClick={() => setIsOpen(!isOpen)}
+                <Nav.Link as={NavLink}
+                    onClick={() => setIsOpen(!isOpen)}
+                    to='/collections'
                 >
                     <FontAwesomeIcon icon={faFolder}/>
                     <span className='ms-2'>Collections</span>
-                    <FontAwesomeIcon icon={faChevronUp} className='ms-5' style={collapseArrowStyle} />
+                    <FontAwesomeIcon icon={faChevronUp} className='ms-3' style={collapseArrowStyle} />
                 </Nav.Link>
                 <Collapse in={isOpen}>
                     <div>
-                    <Nav className='flex-column'>
-                       {/* TODO: List collections from DB */}
-                    </Nav>
+                        <Nav className='flex-column'>
+                            {isLoadingCollections && <Placeholder/>}
+                            {collections  && (collections.map((collection, i) => {
+                                return (
+                                    <NavItem key={i} className='mx-4'>
+                                        <Nav.Link as={NavLink} to={`/collections/${collection._id}`} >
+                                            <FontAwesomeIcon icon={faCircle} size='xs' className='me-2' />
+                                            {collection.title}
+                                        </Nav.Link>
+                                    </NavItem> 
+                                )
+                            }))}
+                        </Nav>
                     </div>
                 </Collapse>
             </NavItem>
