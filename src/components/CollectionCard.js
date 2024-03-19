@@ -5,8 +5,10 @@ import { timeagoFormatter } from '../utils/formatDate';
 import MoreOptionsDropdown from './MoreOptionsDropdown';
 import MoveToTrashModal from './MoveToTrashModal';
 import CollectionModal from './CollectionModal';
+import { useNavigate } from 'react-router-dom';
 
-const CollectionCard = ({collectionID, title, updatedAt}) => {
+const CollectionCard = ({collectionID, title, isTrash, updatedAt}) => {
+    const navigate = useNavigate();
 
     const [showCollectionModal, setShowCollectionModal] = useState(false);
     const [showMoveToTrashModal, setShowMoveToTrashModal] = useState(false);
@@ -27,7 +29,7 @@ const CollectionCard = ({collectionID, title, updatedAt}) => {
 
     const handleCollectionNavigation = (e) => {
         e.stopPropagation();
-        console.log(updatedAt);
+        navigate(`/collections/${collectionID}`);
     }
 
     return (
@@ -35,7 +37,7 @@ const CollectionCard = ({collectionID, title, updatedAt}) => {
         <svg className="svg">
             <clipPath id="folder-clip-path" clipPathUnits="objectBoundingBox"><path d="M0,0 L0.8,0 C0.925,0.1,0.875,0.32,1,0.36 L0,1"></path></clipPath>
         </svg>
-        <div onClick={handleCollectionNavigation} className='cursor-pointer'>
+        <div onClick={!isTrash ? handleCollectionNavigation : undefined} className='cursor-pointer'>
             <Card className='rounded-4 border border-0 collection-card'>
                 <Card.Body className='h-100 p-4 d-flex flex-column justify-content-between'>
                     <Card.Title className='mb-4'>

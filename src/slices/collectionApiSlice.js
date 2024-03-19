@@ -26,8 +26,8 @@ export const collectionApiSlice = apiSlice.injectEndpoints({
 
         getAllCollections: builder.query({
             query: () => `${COLLECTION_URL}/`,
-            providesTags: (result, error, arg) => [
-                'Note',
+            providesTags: (result = [], error, arg) => [
+                'Collection',
                 ...result.map(({_id}) => ({type:'Collection', _id}))
             ]
         })        

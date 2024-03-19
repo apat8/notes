@@ -15,6 +15,7 @@ import NotesScreen from './screens/NotesScreen';
 import EditNoteScreen from './screens/EditNoteScreen';
 import PrivateRoute from './components/PrivateRoute';
 import MainLayout from './components/MainLayout';
+import CollectionsScreen from './screens/CollectionsScreen';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
         <Route path='' element={<MainLayout/>}>
           <Route path='/main' element={<MainScreen/>}></Route>
           <Route path='/notes' element={<NotesScreen/>}></Route>
+          <Route path='/collections' element={<CollectionsScreen/>}></Route>
           <Route path='/notes/:noteID' element={<EditNoteScreen/>}></Route>
         </Route>
       </Route>

@@ -7,12 +7,12 @@ const NoData = ({message, image}) => {
                 <Col>
                     <Row className='text-center'>
                         <Col>
-                            <img src={image} alt='no data' width='40%' className='pb-4 opacity-75' />
+                            <img src={image} alt='no data' width='40%' className='pb-4 opacity-50' />
                         </Col>
                     </Row>
                     <Row className='text-center mt-3'>
                         <Col>
-                            <h1 className='color-navy fw-bold opacity-50'>{message}</h1>
+                            <h1 className='color-navy fw-bold opacity-25'>{message}</h1>
                         </Col>
                     </Row>                                             
                 </Col>
